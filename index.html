@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deepu - Portfolio</title>
+  <style>
+    :root {
+      --bg-light: #ffffff;
+      --text-light: #1a1a1a;
+      --bg-dark: #121212;
+      --text-dark: #e0e0e0;
+      --accent: #007BFF;
+      --header-bg: #e3f2fd;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: all 0.4s ease;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    header {
+      background-color: var(--header-bg);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      padding: 10px 15px;
+      background-color: var(--accent);
+      color: white;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      display: inline-block;
+      position: relative;
+    }
+
+    nav a:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 10px;
+      width: 0;
+      height: 2px;
+      background: white;
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 80%;
+    }
+
+    .toggle-mode {
+      background: none;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-mode:hover {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    section {
+      padding: 3rem 1rem;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .hero img {
+      height: 100px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+    }
+
+    .skills, .projects-container {
+      text-align: left;
+    }
+
+    .skill {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    .skill img {
+      height: 24px;
+      margin-right: 10px;
+    }
+
+    .skill-bar {
+      height: 18px;
+      background-color: #ccc;
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background-color: var(--accent);
+      width: 0;
+      transition: width 1.5s ease;
+    }
+
+    .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background: #f9f9f9;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .project-card h3 {
+      padding: 10px;
+      margin: 0;
+    }
+
+    .project-card p {
+      padding: 0 10px 15px;
+    }
+
+    #contact form {
+      background: #f2f2f2;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: var(--shadow);
+    }
+
+    #contact input, #contact textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    #contact button {
+      background-color: var(--accent);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #contact button:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--header-bg);
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+    <img src="image\Untitled design.png" alt="Smile Image">
+
+
+      <span>Personal Website</span>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#study">Study</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button class="toggle-mode" onclick="toggleDarkMode()">🌗</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="image\smile.jpg" alt="User Logo">
+    <h1>Hi, I'm <span>Deepu</span></h1>
+    <p><span id="typed-text"></span></p>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hi, I'm Deepu, a passionate Web Developer who loves building clean, responsive websites. I turn ideas into real digital experiences using modern tech, always learning and improving.</p>
+
+
+  <section id="study">
+    <h2>My Studies</h2>
+    <p>I completed my BCA from Kurukshetra University and 10th & 12th from HBSE. My academic journey sparked a deep interest in tech, which I continue to grow through self-learning and hands-on work.
+</p>
+
+
+.</p>
+  </section>
+
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skills">
+      <div class="skill">
+        <img src="https://cdn-icons-png.flaticon.com/512/1051/1051277.png" alt="HTML">
+        <p>HTML</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+      </div>
+      <div class="skill">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS">
+        <p>CSS</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+      </div>
+      <div class="skill">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png" alt="JavaScript">
+        <p>JavaScript</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 75%;"></div></div>
+      </div>
+      <div class="skill">
+        <img src="https://cdn-icons-png.flaticon.com/512/1126/1126012.png" alt="React">
+        <p>React</p>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width: 70%;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>My Projects</h2>
+<div class="projects-container">
+  <div class="project-card">
+<img src="C:\Users\DIPU KUMAR\Downloads\pexels-esmihel-18311093.jpg" alt="Blog">
+    <h3>Typing Game</h3>
+    <a href="https://deepu135.github.io/typinggame/" target="_blank"> View Game</a>
+</div>
+      <div class="project-card">
+<img src="C:\Users\DIPU KUMAR\Downloads\pexels-nikola-tomasic-58494762-30956958.jpg" alt="Blog">
+        <h3>Ball Game</h3>
+         <a href="https://deepu135.github.io/ball.game/" target="_blank"> View game</a>
+        
+      </div>
+      <div class="project-card">
+        <img src="image\pexels-artyusufpatel-8998295.jpg" alt="Blog">
+        <h3>Tech Blog</h3>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Have a project idea or question? Let's connect!</p>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Deepu. Designed with 💻 by Deepu Kumar.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    const typed = new Typed("#typed-text", {
+      strings: ["a Full Stack Developer.", "a Creative Designer.", "a Tech Explorer."],
+      typeSpeed: 60,
+      backSpeed: 40,
+      loop: true
+    });
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    window.addEventListener('load', () => {
+      const bars = document.querySelectorAll('.skill-bar-fill');
+      bars.forEach(bar => {
+        bar.style.width = bar.style.width;
+      });
+    });
+  </script>
+</body>
+</html>
+
+
